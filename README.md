@@ -28,7 +28,7 @@ Il progetto si suddivide in vari script e file che gestiscono i dati, l'addestra
      - **Old Trend**: Modello che considera anche gli ultimi 5 risultati utili delle squadre per affinare le previsioni.
 
 5. **`results_1x_x2`**:
-   - Questa cartella contiene un altro file con una versione simile al modello presente in "results_1_x_2", ma con alcune differenze nei dati e nelle configurazioni, come i parametri di addestramento e la gestione delle stagioni.
+   - Questa cartella contiene un altro file con una versione simile al modello presente in "results_1_x_2", ma con alcune differenze nei dati e nelle configurazioni, come i parametri di addestramento e la gestione delle stagioni. In particolare il layer di uscita restituisce 2 risultati, ovvero 1X o X2.
 
 ### Struttura della Rete Neurale
 
