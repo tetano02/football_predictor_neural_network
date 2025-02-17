@@ -8,3 +8,5 @@ money = ok_matches * molt - wrong_matches
 
 print(f'Initial money: {380}')
 print(f'Final money: {money}')
+
+
