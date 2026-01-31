@@ -1,60 +1,146 @@
-# Football Predictor Neural Network
+# ⚽ Football Predictor Neural Network
 
-Il progetto **Football Predictor Neural Network** è stato sviluppato con l'obiettivo di prevedere i risultati delle partite di Serie A, utilizzando una rete neurale addestrata su dati storici delle partite e sulle informazioni riguardanti il valore di mercato delle squadre. Le previsioni sono fatte tenendo conto di diversi fattori, come i risultati precedenti delle squadre e i cambiamenti nei valori di mercato, dati fondamentali per comprendere le dinamiche di ogni squadra. La rete neurale sfrutta questi dati per generare previsioni accurate sui risultati delle partite.
+![Python](https://img.shields.io/badge/Python-3.9+-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-### Obiettivo del progetto
-Il modello predittivo mira a stimare i risultati delle partite di Serie A (vittoria, pareggio o sconfitta) basandosi su:
-1. I dati storici dei risultati delle partite.
-2. I valori di mercato delle squadre, che riflettono la forza relativa delle squadre durante ciascuna stagione.
-3. I trend recenti, che considerano i 5 risultati utili più recenti delle squadre.
+A neural network–based project designed to predict **Serie A football match outcomes** by combining **historical match data**, **team market values**, and **recent performance trends**.
 
-### Struttura del Progetto
+---
 
-Il progetto si suddivide in vari script e file che gestiscono i dati, l'addestramento del modello e i risultati delle previsioni.
+## 📌 Project Goal
 
-1. **`csv_converter.py`**:
-   - Questo script è responsabile della conversione dei dati grezzi in formato CSV. I dati provengono da una fonte pubblica, ovvero il [Football Data Repository](https://github.com/openfootball/datafile), e vengono trasformati in un formato adatto all'addestramento della rete neurale.
+The goal of this project is to predict football match outcomes using a **binary classification approach**:
 
-2. **`market_values_data.py`**:
-   - Script che raccoglie i dati relativi ai valori di mercato delle squadre di Serie A, annualmente aggiornati, provenienti da [Transfermarkt](https://www.transfermarkt.com/). Questi dati sono utilizzati per stimare il valore complessivo di ciascuna squadra e comprendere la sua competitività.
+- **1X** → Home win or draw  
+- **X2** → Away win or draw  
 
-3. **`football_prediction_model.keras`**:
-   - Contiene il file del modello neurale addestrato in Keras, che è riutilizzabile per effettuare previsioni su partite future. Questo modello è il risultato dell'addestramento su dati storici delle stagioni passate e su informazioni aggiornate sui valori di mercato delle squadre.
+The model leverages:
+- Historical match results
+- Team market values as a proxy for squad strength
+- Short-term form based on the last 5 matches
 
-4. **`results_1_x_2`**:
-   - Questa cartella contiene diversi file che riguardano le varie versioni del modello di rete neurale. Ogni file è associato a un modello addestrato con diverse configurazioni di input:
-     - **Market Value**: Include i dati sui valori di mercato delle squadre.
-     - **Weight**: Modello in cui i dati vengono pesati in base alla stagione e alla forza relativa delle squadre nel campionato.
-     - **Old Trend**: Modello che considera anche gli ultimi 5 risultati utili delle squadre per affinare le previsioni.
+---
 
-5. **`results_1x_x2`**:
-   - Questa cartella contiene un altro file con una versione simile al modello presente in "results_1_x_2", ma con alcune differenze nei dati e nelle configurazioni, come i parametri di addestramento e la gestione delle stagioni. In particolare il layer di uscita restituisce 2 risultati, ovvero 1X o X2.
+## 🧠 Key Features
 
-### Struttura della Rete Neurale
+- Multi-season historical dataset (2013–2023)
+- Market value integration from Transfermarkt
+- Trend-based performance modeling
+- Neural network implemented with **Keras**
+- Strong generalization on unseen data
 
-Per la realizzazione della rete neurale, sono stati testati vari modelli. La versione finale del modello (1X X2) è stata ottenuta tramite le seguenti specifiche architetturali:
+---
 
-- **Input Layer (12 neuroni)**: Questo strato prende in considerazione i dati sui valori di mercato e i 5 risultati utili precedenti di entrambe le squadre (Casa e Trasferta). I dati sono organizzati come segue:
-  - 5 risultati utili precedenti per la squadra di casa.
-  - 5 risultati utili precedenti per la squadra in trasferta.
-  - I valori di mercato delle due squadre.
-  - La distinzione tra casa e trasferta (incluso come variabile separata).
-  
-- **Hidden Layer (2 strati, 8 neuroni)**: La rete neurale ha due strati nascosti con 8 neuroni ciascuno. Questi strati consentono alla rete di apprendere le relazioni non lineari tra i dati di input e le previsioni dei risultati.
+## 📂 Project Structure
 
-- **Output Layer (2 neuroni)**: Lo strato finale fornisce la previsione del risultato della partita, con due neuroni: uno per la vittoria della squadra di casa e l'altro per la vittoria della squadra in trasferta. Il pareggio è implicito nel modello come assenza di vittoria per entrambe le squadre.
+Football-Predictor-Neural-Network/
+│
+├── csv_converter.py
+├── market_values_data.py
+├── football_prediction_model.keras
+│
+├── results_1_x_2/
+│   ├── model_market_value.keras
+│   ├── model_weighted.keras
+│   └── model_old_trend.keras
+│
+├── results_1x_x2/
+│   └── final_binary_model.keras
+│
+└── README.md
 
-### Dati Utilizzati
+---
 
-I dati utilizzati per l'addestramento e il test del modello sono suddivisi come segue:
+## 🗃️ Data Sources
 
-- **Addestramento**: I dati storici delle stagioni dal 2013 al 2023 sono utilizzati per addestrare il modello.
-- **Test**: I dati della stagione 2023/2024 sono utilizzati per testare le previsioni del modello.
+- **Match results**  
+  OpenFootball – Football Data Repository  
+  https://github.com/openfootball/datafile
 
-### Risultati
+- **Team market values**  
+  Transfermarkt  
+  https://www.transfermarkt.com/
 
-Il risultato ottenuto dall'ultimo modello in test è il seguente:
-- **Addestramento**: 93% di precisione.
-- **Test**: 80% di precisione.
+---
 
-Questi risultati mostrano che il modello è riuscito a fare previsioni abbastanza accurate durante la fase di addestramento e ha mantenuto una buona capacità di generalizzazione sui dati di test.
+## 🧩 Neural Network Architecture
+
+### Input Layer (12 neurons)
+- 5 recent results for the home team
+- 5 recent results for the away team
+- Home team market value
+- Away team market value
+- Home/Away indicator
+
+### Hidden Layers
+- 2 fully connected layers
+- 8 neurons each
+- Non-linear feature learning
+
+### Output Layer (2 neurons)
+- Neuron 1 → Home team avoids defeat (1X)
+- Neuron 2 → Away team avoids defeat (X2)
+
+Draws are implicitly modeled as the absence of a loss.
+
+---
+
+## 📊 Dataset Split
+
+| Phase      | Seasons     |
+|------------|-------------|
+| Training   | 2013 – 2023 |
+| Testing    | 2023 – 2024 |
+
+---
+
+## 📈 Model Performance
+
+| Phase    | Accuracy |
+|----------|----------|
+| Training | **93%**  |
+| Testing  | **80%**  |
+
+---
+
+## 🚀 How to Run
+
+1. Clone the repository:
+   git clone https://github.com/your-username/football-predictor-neural-network.git
+
+2. Install dependencies:
+   pip install tensorflow pandas numpy scikit-learn
+
+3. Prepare datasets:
+   python csv_converter.py  
+   python market_values_data.py
+
+4. Load and use the trained model:
+   from tensorflow.keras.models import load_model  
+   model = load_model("football_prediction_model.keras")  
+   prediction = model.predict(input_data)
+
+---
+
+## 🔮 Future Improvements
+
+- Explicit multi-class prediction (1 / X / 2)
+- Player-level statistics
+- Expected Goals (xG) integration
+- Real-time data ingestion
+- Model comparison with classic ML algorithms
+
+---
+
+## 🏁 Conclusion
+
+This project demonstrates how combining **football analytics** with **neural networks** and **economic indicators** can produce meaningful match outcome predictions.  
+It serves as a solid foundation for further research in sports data science.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
