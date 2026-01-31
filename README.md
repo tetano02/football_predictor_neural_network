@@ -35,6 +35,7 @@ The model leverages:
 
 ## 📂 Project Structure
 
+```text
 Football-Predictor-Neural-Network/
 │
 ├── csv_converter.py
@@ -50,7 +51,7 @@ Football-Predictor-Neural-Network/
 │   └── final_binary_model.keras
 │
 └── README.md
-
+```
 ---
 
 ## 🗃️ Data Sources
