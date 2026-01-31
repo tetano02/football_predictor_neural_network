@@ -5,7 +5,7 @@
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-A neural network–based project designed to predict **Serie A football match outcomes** by combining **historical match data**, **team market values**, and **recent performance trends**.
+As one of my first ML projects, i did a neural network–based project designed to predict **Serie A football match outcomes** by combining **historical match data**, **team market values**, and **recent performance trends**.
 
 ---
 
